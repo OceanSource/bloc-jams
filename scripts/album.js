@@ -59,9 +59,6 @@ var createSongRow = function(songNumber, songName, songLength) {
   }
 };
 
-
-
-
 var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
 var songRows = document.getElementsByClassName('album-view-song-item');
 
@@ -73,14 +70,20 @@ var currentlyPlayingSong = null;
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
 	
-	var findParentByClassName = function(element, targetClass) {
-    	if (element) {
-        	var currentParent = element.parentElement;
-        	while (currentParent.className != targetClass && currentParent.className !== null) {
-            	currentParent = currentParent.parentElement;
-        	}
-        	return currentParent;
-    	}
+	var findParentByClassName = function (element, findClass) {
+  		var targetParent = undefined;
+  		while (targetParent === undefined) {
+    		if (element.parentElement === null) {
+      			alert("No parent found");
+    		} else if ( element.parentElement.nodeName == 'html' ){
+      			alert("No parent found with that class name")
+			} else if (element.parentElement.className == findClass) {
+      			targetParent = element.parentElement;
+    		} else {
+      			element = element.parentElement;
+    		}
+  			return targetParent;
+  		}
 	};
 	
 	var getSongItem = function(element) {
