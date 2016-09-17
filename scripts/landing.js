@@ -20,4 +20,4 @@ var scrollDistance = $('.selling-points').offset().top - $(window).height() + 20
              animatePoints();
          }
      });
-});
+};
